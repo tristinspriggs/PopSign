@@ -612,6 +612,7 @@ GameObject:
   - component: {fileID: 889089788}
   - component: {fileID: 889089787}
   - component: {fileID: 889089786}
+  - component: {fileID: 889089791}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -716,8 +717,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533873280}
-        m_MethodName: Back
+      - m_Target: {fileID: 889089791}
+        m_MethodName: exitScheduleScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -764,6 +765,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889089784}
   m_CullTransparentMesh: 0
+--- !u!114 &889089791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889089784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f455577cac146fd4f8e52c2ed68e1af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1300298400
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +887,6 @@ GameObject:
   - component: {fileID: 1533873279}
   - component: {fileID: 1533873282}
   - component: {fileID: 1533873281}
-  - component: {fileID: 1533873280}
   m_Layer: 5
   m_Name: Scheduling
   m_TagString: Untagged
@@ -902,32 +914,6 @@ RectTransform:
   m_AnchoredPosition: {x: -14.75, y: 99}
   m_SizeDelta: {x: 29.5, y: 197.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1533873280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533873278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0912591314f0f42129c207a8246818d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggleOn: {fileID: 21300000, guid: 9c228bd9ee8184638a27086c73182ad7, type: 3}
-  toggleOff: {fileID: 21300000, guid: 8601ca748dc4e4e83a55c15d07cf0999, type: 3}
-  musicToggle: {fileID: 0}
-  soundToggle: {fileID: 0}
-  menu: {fileID: 640086679}
-  musicAndSound: {fileID: 0}
-  about: {fileID: 0}
-  tutorial: {fileID: 0}
-  page1: {fileID: 0}
-  page2: {fileID: 0}
-  page3: {fileID: 0}
-  page4: {fileID: 0}
-  page5: {fileID: 0}
-  page6: {fileID: 0}
 --- !u!114 &1533873281
 MonoBehaviour:
   m_ObjectHideFlags: 0

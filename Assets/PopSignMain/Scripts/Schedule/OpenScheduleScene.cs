@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class OpenScheduleScene : MonoBehaviour
 {
@@ -17,8 +18,15 @@ public class OpenScheduleScene : MonoBehaviour
         
     }
 
-    public void openScheduleScene()
+    public void openScheduleScene(string fromPage)
     {
+        PlayerPrefs.SetString("From Page", fromPage);
         SceneManager.LoadScene("scheduling");
+    }
+
+    public void exitScheduleScene()
+    {
+        string target = PlayerPrefs.GetString("From Page", "map");
+        SceneManager.LoadScene(target);
     }
 }
