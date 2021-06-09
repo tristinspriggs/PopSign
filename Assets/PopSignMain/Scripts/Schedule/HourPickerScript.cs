@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HourPickerScript : MonoBehaviour
+public class HourPickerScript : TimePickerScript
 {
-    // Start is called before the first frame update
-    public Text textPrefab;
-    public GameObject content;
-    public GameObject pickerFrame;
-    private ArrayList choices = new ArrayList();
 
     void Start()
     {

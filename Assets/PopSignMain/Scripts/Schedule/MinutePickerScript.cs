@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MinutePickerScript : MonoBehaviour
+public class MinutePickerScript : TimePickerScript
 {
-    public Text textPrefab;
-    public GameObject content;
-    public GameObject pickerFrame;
-    private ArrayList choices = new ArrayList();
 
     void Start()
     {
