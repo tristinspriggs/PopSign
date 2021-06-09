@@ -8,6 +8,8 @@ public class TimePickingComfirmScript : MonoBehaviour
     // Start is called before the first frame update
     public TimePickerScript hour, minute, noon;
     public Text target;
+    public GameObject picker;
+
     void Start()
     {
         
@@ -26,5 +28,6 @@ public class TimePickingComfirmScript : MonoBehaviour
         result += minute.getValue() + " ";
         result += noon.getValue();
         target.text = result;
+        picker.SetActive(false);
     }
 }
