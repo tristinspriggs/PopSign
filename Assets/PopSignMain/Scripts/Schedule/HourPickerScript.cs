@@ -12,7 +12,12 @@ public class HourPickerScript : MonoBehaviour
 
     void Start()
     {
-        
+        for (int i = 1; i <= 12; i++)
+        {
+            Text text = Text.Instantiate(textPrefab);
+            text.text = i + " ";
+            text.transform.parent = content.transform;
+        }
     }
 
     // Update is called once per frame
