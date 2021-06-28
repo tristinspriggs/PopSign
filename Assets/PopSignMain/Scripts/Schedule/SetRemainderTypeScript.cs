@@ -11,7 +11,19 @@ public class SetRemainderTypeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        string remainderType = PlayerPrefs.GetString("Schedule Type");
+        if (remainderType == "Daily")
+        {
+
+        }
+        else if (remainderType == "Weekly")
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
     // Update is called once per frame
