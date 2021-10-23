@@ -23,6 +23,21 @@ public class Video {
 		imageName = null;
 	}
 
+	public Video(string _fileName, string _folderName, string _imageName, BallColor _color) {
+		fileName = _fileName;
+		folderName = _folderName;
+		imageName = _imageName;
+		color = _color;
+
+	}
+
+	//used in VideoManager during setReviewWord()
+	public Video (string _fileName, string _folderName) {
+		fileName = _fileName;
+		folderName = _folderName;
+		imageName = null;
+	}
+
 	// Use this for initialization
 	void Start () {
 

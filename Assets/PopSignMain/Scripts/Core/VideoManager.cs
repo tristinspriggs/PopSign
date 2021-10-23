@@ -53,24 +53,34 @@ public class VideoManager {
 	void ReadJsonFromTXT()
 	{
     int currentLevel = PlayerPrefs.GetInt("OpenLevel");
-
 		TextAsset textReader = Resources.Load("VideoConnection/" + "level" + currentLevel ) as TextAsset;
-		JsonData jd = JsonMapper.ToObject(textReader.text);
-
+		JsonData jd = JsonMapper.ToObject<JsonData>(textReader.text);
 		foreach(BallColor color in Enum.GetValues(typeof(BallColor)))
 		{
 			if (color == BallColor.random)
 			{
 				break;
 			}
-			string fileName = jd[color + "fileName"] + "";
-			folderName = jd[color + "folderName"] + "";
-			string frameNumber = jd[color + "frameNumber"] + "";
-			string imageName = jd [color + "ImageName"] + "";
-			if (fileName != "" && folderName != "" && frameNumber != "" && imageName != "")
-			{
-				videoList.Add(new Video (int.Parse (frameNumber), fileName, folderName, imageName, color));
-			}
+
+            //testing the video JSON data
+            string fileName = jd[color + "fileName"] + "";
+            if (currentLevel == 1) {
+                //string fileName = jd[color + "fileName"] + "";
+                folderName = jd[color + "folderName"] + "";
+                string imageName = jd[color + "ImageName"] + "";
+                if (fileName != "" && folderName != "" && imageName != "") {
+                    videoList.Add(new Video(fileName, folderName, imageName, color));
+                }
+            } else {
+                //string fileName = jd[color + "fileName"] + "";
+                folderName = jd[color + "folderName"] + "";
+                string frameNumber = jd[color + "frameNumber"] + "";
+                string imageName = jd [color + "ImageName"] + "";
+                if (fileName != "" && folderName != "" && frameNumber != "" && imageName != "")
+                {
+                    videoList.Add(new Video (int.Parse (frameNumber), fileName, folderName, imageName, color));
+                }
+            }
 			string wordsSeen = PlayerPrefs.GetString("WordsSeen", "");
 			string[] words = wordsSeen.Split(',');
 			if(!words.Contains(fileName))
@@ -88,14 +98,20 @@ public class VideoManager {
 			Text currentWord = (Text) GameObject.Find("SelectedWord").GetComponent<Text>();
 			currentWord.text = word;
 
+            int currentLevel = PlayerPrefs.GetInt("OpenLevel");
+
 			using (StreamReader r = new StreamReader("Assets/PopSignMain/Resources/words.json"))
 	    {
 	        string json = r.ReadToEnd();
 					JsonData jd = JsonMapper.ToObject(json);
 					JsonData wordData = jd[reviewWord];
 					folderName = (string) wordData["folderName"];
-					frameCount = (int) wordData["frameNumber"];
-					curtVideo = new Video (frameCount, reviewWord, folderName);
+                    if (currentLevel == 1) {
+                        curtVideo = new Video (reviewWord, folderName);
+                    } else {
+                        frameCount = (int) wordData["frameNumber"];
+                        curtVideo = new Video (frameCount, reviewWord, folderName);
+                    }
 					curtVideoIndex = 0;
 					videoList.Add(curtVideo);
 	    }

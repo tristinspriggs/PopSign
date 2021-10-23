@@ -1,6 +1,7 @@
 using UnityEngine; // 41 Post - Created by DimasTheDriver on Apr/20/2012 . Part of the 'Unity: Animated texture from image sequence' post series. Available at: http://www.41post.com/?p=4742
 using System.Collections; //Script featured at Part 2 of the post series.
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class PreviewVideoSwitcher : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PreviewVideoSwitcher : MonoBehaviour
 
 	//Gets the raw image
 	private RawImage img;
+
+	//Gets the video player
+	private VideoPlayer videoPlayer;
 
 	//An integer to advance frames
 	private int frameCounter = 0;
@@ -39,6 +43,8 @@ public class PreviewVideoSwitcher : MonoBehaviour
 		this.img = (RawImage)this.GetComponent<RawImage>();
 		//With the folder name and the sequence name, get the full path of the images (without the numbers)
 		this.baseName = this.folderName + "/" + this.imageSequenceName;
+        //Get a reference to the VideoPlayer of the game object this script is attached to
+        this.videoPlayer = (VideoPlayer)this.GetComponent<VideoPlayer>();
 	}
 
 	void Start ()
@@ -46,8 +52,20 @@ public class PreviewVideoSwitcher : MonoBehaviour
 		//set the initial frame as the first texture. Load it from the first image on the folder
 //		Debug.Log(sharedVideoManager.curtVideo.imageName);
 		changePracticeScreenVideo ();
+
+		//set texture to VideoTexture
+		this.texture = (Texture)Resources.Load("Video/VideoTexture", typeof(Texture));
+
+		//this.videoPlayer.clip = (VideoClip)Resources.Load(baseName + "", typeof(VideoClip));
+		this.videoPlayer.clip = (VideoClip)Resources.Load("MacarthurBates/Games/please", typeof(VideoClip));
+
 		if (baseName != "") {
-			texture = (Texture)Resources.Load(baseName + "", typeof(Texture));
+
+			//set videoclip to video needed
+
+
+			//texture = (Texture)Resources.Load(baseName + "", typeof(Texture));
+			//this.texture = (Texture)Resources.Load(Video/VideoTexture)
 
 			// Popsign set initial word for help text
 			// POPSign add image to video caption as help text
@@ -68,8 +86,9 @@ public class PreviewVideoSwitcher : MonoBehaviour
 				helpTextBG.sprite = (Sprite)Resources.Load (bgName, typeof(Sprite));
 
 				helpTextObject.SetActive (false);
-
 			}
+                //set Render Mode of videoPlayer to Render Texture
+            //vid.renderMode = RenderTexture
 		}
 	}
 
@@ -79,16 +98,18 @@ public class PreviewVideoSwitcher : MonoBehaviour
 		if (sharedVideoManager.shouldChangeVideo) {
 			//POPSign update the Video once the ball is shooted
 			Video curtVideo = sharedVideoManager.getCurtVideo ();
-
 			//POPSign reset all the variable to current video
 			this.folderName = curtVideo.folderName;
 			this.imageSequenceName = curtVideo.fileName;
-			this.numberOfFrames = curtVideo.frameNumber;
-			this.frameCounter = 0;
+			//this.numberOfFrames = curtVideo.frameNumber;
+			//this.frameCounter = 0;
 
 			this.baseName = this.folderName + "/" + this.imageSequenceName;
 			if (this.baseName != "") {
-				texture = (Texture)Resources.Load (baseName + "", typeof(Texture));
+				//texture = (Texture)Resources.Load (baseName + "", typeof(Texture));
+				//this.videoPlayer.clip = (VideoClip)Resources.Load(baseName + "", typeof(VideoClip));
+				//this.texture = (Texture)Resources.Load(Video/VideoTexture)
+
 
 				// PopSign Update help text
 				if (helpTextImageObject) {
@@ -120,34 +141,34 @@ public class PreviewVideoSwitcher : MonoBehaviour
 			sharedVideoManager.shouldChangeVideo = false;
 		} else {
 			//Start the 'PlayLoop' method as a coroutine with a 0.04 delay
-			StartCoroutine("PlayLoop", 0.04f);
+			//StartCoroutine("PlayLoop", 0.04f);
 			//Set the material's texture to the current value of the frameCounter variable
 			if (this.texture != null) {
-				img.texture = this.texture;
+				//img.texture = this.texture;
 			}
 		}
 	}
 
 	//The following methods return a IEnumerator so they can be yielded:
 	//A method to play the animation in a loop
-    IEnumerator PlayLoop(float delay)
-    {
-        //wait for the time defined at the delay parameter
-        yield return new WaitForSeconds(delay);
+    // IEnumerator PlayLoop(float delay)
+    // {
+    //     //wait for the time defined at the delay parameter
+    //     yield return new WaitForSeconds(delay);
 
-				//advance one frame
-				if (numberOfFrames != 0) {
-					frameCounter = (++frameCounter)%numberOfFrames;
-				}
+				// //advance one frame
+				// if (numberOfFrames != 0) {
+				// 	frameCounter = (++frameCounter)%numberOfFrames;
+				// }
 
-				//load the current frame
-				if (baseName != "") {
-					this.texture = (Texture)Resources.Load(baseName + frameCounter.ToString(), typeof(Texture));
-				}
+				// //load the current frame
+				// if (baseName != "") {
+				// 	this.texture = (Texture)Resources.Load(baseName + frameCounter.ToString(), typeof(Texture));
+				// }
 
-        //Stop this coroutine
-        StopCoroutine("PlayLoop");
-    }
+    //     //Stop this coroutine
+    //     StopCoroutine("PlayLoop");
+    // }
 
 	//A method to play the animation just once
     IEnumerator Play(float delay)
