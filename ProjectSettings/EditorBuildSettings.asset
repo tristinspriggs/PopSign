@@ -26,3 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PopSignMain/Scenes/settings.unity
     guid: 2ba547201e2cb407093d5267b0fc33d3
+  m_configObjects: {}
