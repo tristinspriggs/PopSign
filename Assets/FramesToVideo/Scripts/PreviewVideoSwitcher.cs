@@ -1,6 +1,7 @@
 using UnityEngine; // 41 Post - Created by DimasTheDriver on Apr/20/2012 . Part of the 'Unity: Animated texture from image sequence' post series. Available at: http://www.41post.com/?p=4742
 using System.Collections; //Script featured at Part 2 of the post series.
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class PreviewVideoSwitcher : MonoBehaviour
 {
@@ -32,11 +33,14 @@ public class PreviewVideoSwitcher : MonoBehaviour
 	//Shared Video Manger
 	private VideoManager sharedVideoManager;
 
+    private VideoPlayer video;
+
 	void Awake()
 	{
 		this.sharedVideoManager = VideoManager.getVideoManager ();
-		//Get a reference to the Material of the game object this script is attached to
-		this.img = (RawImage)this.GetComponent<RawImage>();
+        video = this.GetComponent<VideoPlayer>();
+        //Get a reference to the Material of the game object this script is attached to
+        this.img = (RawImage)this.GetComponent<RawImage>();
 		//With the folder name and the sequence name, get the full path of the images (without the numbers)
 		this.baseName = this.folderName + "/" + this.imageSequenceName;
 	}
@@ -116,15 +120,18 @@ public class PreviewVideoSwitcher : MonoBehaviour
 					*/
 				}
 			}
-
-			sharedVideoManager.shouldChangeVideo = false;
+            video.clip = Resources.Load<VideoClip>("MacarthurBates/" + this.folderName + "/" + this.imageSequenceName + "/" + this.imageSequenceName + ".mp4") as VideoClip;
+            video.Play();
+            sharedVideoManager.shouldChangeVideo = false;
 		} else {
+            /*
 			//Start the 'PlayLoop' method as a coroutine with a 0.04 delay
 			StartCoroutine("PlayLoop", 0.04f);
 			//Set the material's texture to the current value of the frameCounter variable
 			if (this.texture != null) {
 				img.texture = this.texture;
 			}
+            */
 		}
 	}
 

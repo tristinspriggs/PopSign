@@ -3,6 +3,7 @@ using System.Collections; //Script featured at Part 2 of the post series.
 using System.IO;
 using LitJson;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class ReviewVideo : MonoBehaviour
 {
@@ -25,10 +26,14 @@ public class ReviewVideo : MonoBehaviour
 	// review word object
 	public Text wordObject;
 
-	void Awake()
+    private VideoPlayer video;
+
+
+    void Awake()
 	{
-		//Get a reference to the Material of the game object this script is attached to
-		this.img = (RawImage)this.GetComponent<RawImage>();
+        video = this.GetComponent<VideoPlayer>();
+        //Get a reference to the Material of the game object this script is attached to
+        this.img = (RawImage)this.GetComponent<RawImage>();
 	}
 
 	void Start ()
@@ -56,16 +61,21 @@ public class ReviewVideo : MonoBehaviour
 			this.baseName = "MacarthurBates/" + this.folderName + "/" + this.imageSequenceName + "/" + this.imageSequenceName;
 			if (this.baseName != "")
 				texture = (Texture)Resources.Load (baseName + "", typeof(Texture));
-
-			sharedVideoManager.shouldChangeVideo = false;
+            video.clip = Resources.Load<VideoClip>("MacarthurBates/" + this.folderName + "/" + this.imageSequenceName + "/" + this.imageSequenceName + ".mp4") as VideoClip;
+            Debug.Log(video.clip);
+            video.Play();
+            sharedVideoManager.shouldChangeVideo = false;
+            sharedVideoManager.shouldChangeVideo = false;
 		}
 		else
 		{
+            /*
 			//Start the 'PlayLoop' method as a coroutine with a 0.04 delay
 			StartCoroutine("PlayLoop", 0.04f);
 			//Set the material's texture to the current value of the frameCounter variable
 			if (this.texture != null)
 				img.texture = this.texture;
+            */
 		}
 	}
 
