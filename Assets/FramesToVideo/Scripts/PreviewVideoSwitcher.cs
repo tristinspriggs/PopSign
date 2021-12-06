@@ -120,7 +120,8 @@ public class PreviewVideoSwitcher : MonoBehaviour
 					*/
 				}
 			}
-            video.clip = Resources.Load<VideoClip>("MacarthurBates/" + this.folderName + "/" + this.imageSequenceName + "/" + this.imageSequenceName + ".mp4") as VideoClip;
+            var clip = Resources.Load<VideoClip>(this.folderName + "/" + this.imageSequenceName) as VideoClip;
+            video.clip = clip;
             video.Play();
             sharedVideoManager.shouldChangeVideo = false;
 		} else {

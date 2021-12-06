@@ -61,8 +61,7 @@ public class ReviewVideo : MonoBehaviour
 			this.baseName = "MacarthurBates/" + this.folderName + "/" + this.imageSequenceName + "/" + this.imageSequenceName;
 			if (this.baseName != "")
 				texture = (Texture)Resources.Load (baseName + "", typeof(Texture));
-            video.clip = Resources.Load<VideoClip>("MacarthurBates/" + this.folderName + "/" + this.imageSequenceName + "/" + this.imageSequenceName + ".mp4") as VideoClip;
-            Debug.Log(video.clip);
+            video.clip = Resources.Load<VideoClip>(this.folderName + "/" + this.imageSequenceName) as VideoClip;
             video.Play();
             sharedVideoManager.shouldChangeVideo = false;
             sharedVideoManager.shouldChangeVideo = false;
